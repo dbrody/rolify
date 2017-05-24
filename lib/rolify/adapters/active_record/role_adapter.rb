@@ -46,7 +46,11 @@ module Rolify
       end
 
       def add(relation, role)
-        relation.roles << role
+        role_association = UsersRole.new
+        role_association.user = relation
+        role_association.role = role
+        role_association.save
+        # relation.roles << role
       end
 
       def remove(relation, role_name, resource = nil)
